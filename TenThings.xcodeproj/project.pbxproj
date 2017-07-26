@@ -16,8 +16,9 @@
 		54ED235B1EC00A4800AC15CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54ED23591EC00A4800AC15CC /* LaunchScreen.storyboard */; };
 		54ED23661EC00A4900AC15CC /* TenThingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED23651EC00A4900AC15CC /* TenThingsTests.swift */; };
 		54ED23711EC00A4900AC15CC /* TenThingsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ED23701EC00A4900AC15CC /* TenThingsUITests.swift */; };
+		D07BB4991F203B5000886578 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07BB4981F203B5000886578 /* RegisterViewController.swift */; };
 		D0CC72581F1858A300C33DAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CC72571F1858A300C33DAC /* AccountViewController.swift */; };
-		D0CC725A1F18626600C33DAC /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CC72591F18626600C33DAC /* HttpRequest.swift */; };
+		D0CC725A1F18626600C33DAC /* HttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CC72591F18626600C33DAC /* HttpRequestHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +54,9 @@
 		54ED236C1EC00A4900AC15CC /* TenThingsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TenThingsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		54ED23701EC00A4900AC15CC /* TenThingsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TenThingsUITests.swift; sourceTree = "<group>"; };
 		54ED23721EC00A4900AC15CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D07BB4981F203B5000886578 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D0CC72571F1858A300C33DAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = ../AccountViewController.swift; sourceTree = "<group>"; };
-		D0CC72591F18626600C33DAC /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
+		D0CC72591F18626600C33DAC /* HttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				D0CC72571F1858A300C33DAC /* AccountViewController.swift */,
-				D0CC72591F18626600C33DAC /* HttpRequest.swift */,
+				D0CC72591F18626600C33DAC /* HttpRequestHelper.swift */,
 				54ED23501EC00A4800AC15CC /* AppDelegate.swift */,
 				54ED23541EC00A4800AC15CC /* Main.storyboard */,
+				D07BB4981F203B5000886578 /* RegisterViewController.swift */,
 				54D0AEB71F15C37300243B58 /* FindLoverViewController.swift */,
 				548BE3E31EC1F46B009E0A9D /* Model.xcdatamodeld */,
 				548BE4231EC1F99D009E0A9D /* state.plist */,
@@ -276,8 +279,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				54ED23511EC00A4800AC15CC /* AppDelegate.swift in Sources */,
-				D0CC725A1F18626600C33DAC /* HttpRequest.swift in Sources */,
+				D0CC725A1F18626600C33DAC /* HttpRequestHelper.swift in Sources */,
 				548BE3E51EC1F46B009E0A9D /* Model.xcdatamodeld in Sources */,
+				D07BB4991F203B5000886578 /* RegisterViewController.swift in Sources */,
 				D0CC72581F1858A300C33DAC /* AccountViewController.swift in Sources */,
 				54D0AEB81F15C37300243B58 /* FindLoverViewController.swift in Sources */,
 			);
