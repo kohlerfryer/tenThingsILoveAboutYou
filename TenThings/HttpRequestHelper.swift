@@ -9,9 +9,11 @@
 import UIKit
 
 class HttpRequestHelper: NSObject {
+    
+    //TODO - handle http 404 errors
+    //TODO - handle cookie
 
-    static func preformBasicPost(to apiEndpoint:String, withCallBack closure: @escaping (_ jsonResult:NSDictionary) -> Void, sendData postString:String){
-//        let request = NSMutableURLRequest(url: URL(string: apiEndpoint)!)
+    static func preformBasicPost(to apiEndpoint:String, withCallBack closure: @escaping (_ httpUrlResponse:HTTPURLResponse?, _ jsonResult:NSDictionary?) -> Void, sendData postString:String, withErrorHandler failureClosure: @escaping(_ error:NSError) -> Void) -> Void{
         var request = URLRequest(url: URL(string: apiEndpoint)!)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -20,20 +22,19 @@ class HttpRequestHelper: NSObject {
         
         let session = URLSession.shared
 
-        let dataTask = session.dataTask(with: request, completionHandler: {(data:Data?, response:URLResponse? ,error:Error?) -> Void in
+        let dataTask = session.dataTask(with: request, completionHandler: {(data:Data?, urlResponse:URLResponse? ,error:Error?) -> Void in
+
+            let httpUrlResponse = urlResponse as? HTTPURLResponse
             do {
-
                 if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
-
-                    closure(jsonResult)
+                    closure(httpUrlResponse, jsonResult)
                 }
             }
             catch let error as NSError {
-
-                print(error.localizedDescription)
+                failureClosure(error)
             }
-            
         })
+        
         dataTask.resume()
     }
     

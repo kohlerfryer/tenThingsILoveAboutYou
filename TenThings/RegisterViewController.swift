@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     private let userWebServiceURL = "http://127.0.0.1:8000/api/user"
 
@@ -18,9 +18,9 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nameUITextField.text = "asdfasdf"
-        self.emailUITextField.text = "asdfasdf@gmail.com"
-        self.passwordUITextField.text = "brassmonkey"
+        self.nameUITextField.delegate = self
+        self.emailUITextField.delegate = self
+        self.passwordUITextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,12 +30,15 @@ class RegisterViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("about to segue")
     }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            return textField.resignFirstResponder()
+    }
     
-    private func createUser(_ name:String,_ email:String,_ password:String, onSuccess successClosure: @escaping(_ jsonResult:NSDictionary) -> Void, onFailure failureClosure: @escaping(_ jsonResult:NSDictionary) -> Void) -> Void {
+    private func createUser(_ name:String,_ email:String,_ password:String, onSuccess successClosure: @escaping(_ httpUrlResponse:HTTPURLResponse?, _ jsonResult:NSDictionary?) -> Void, onFailure failureClosure: @escaping(_ error:NSError) -> Void) -> Void {
         
         let data:String = "name=\(name)&email=\(email)&password=\(password)&password_confirmation=\(password)"
-        print("here2")
-        HttpRequestHelper.preformBasicPost(to: self.userWebServiceURL, withCallBack: successClosure, sendData: data)
+        HttpRequestHelper.preformBasicPost(to: self.userWebServiceURL, withCallBack: successClosure, sendData: data, withErrorHandler: failureClosure)
     }
     
     private func registrationFieldsValid() -> Bool {
@@ -47,14 +50,23 @@ class RegisterViewController: UIViewController {
         let email:String = self.emailUITextField.text ?? ""
         let password:String = self.passwordUITextField.text ?? ""
         
-        let printJson = { (jsonResult:NSDictionary) -> Void in
-            print("fetch")
-            print("\(jsonResult)")
+        let handleSuccess = { (_ httpUrlResponse:HTTPURLResponse?, _ jsonResult:NSDictionary?) -> Void in
+            
+            switch httpUrlResponse!.statusCode {
+            case 200:
+                print("Success!")
+                print("\(jsonResult!)")
+            default:
+                print("Error")
+                print("\(jsonResult!)")
+            }
         }
         
-        print("here")
+        let handleFailure = { (_ error:NSError) -> Void in
+            print("Something really bad happened: \(error.localizedDescription)")
+        }
         
-        self.createUser(name, email, password, onSuccess: printJson, onFailure: printJson)
+        self.createUser(name, email, password, onSuccess: handleSuccess, onFailure: handleFailure)
     }
 
 
