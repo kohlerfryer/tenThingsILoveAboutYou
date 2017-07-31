@@ -13,12 +13,6 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let printJson = { (jsonResult:NSDictionary) -> Void in
-//            print("ASynchronous\(jsonResult)")
-//        }
-        
-//        HttpRequestHelper.preformBasicPost(to: "http://127.0.0.1:8000/api/user", withCallBack: printJson, sendData: "name=KohlerFryer&email=poopo@podop.com")
 
     }
 
