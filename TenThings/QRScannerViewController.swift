@@ -53,6 +53,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrCodeFrameView = UIView()
             
             if let qrCodeFrameView = qrCodeFrameView {
+                print("shit")
                 qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
@@ -78,6 +79,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
             //messageLabel.text = "No QR code is detected"
+            print( "No QR code is detected")
             return
         }
         
@@ -90,7 +92,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                //messageLabel.text = metadataObj.stringValue
+                print(metadataObj.stringValue)
             }
         }
     }
